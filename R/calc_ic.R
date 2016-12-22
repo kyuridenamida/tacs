@@ -15,13 +15,13 @@ calc_ic <- function(exp_data,info){
   middle$wo_edge <- calc_ic_without_edge(exp_data,info$ic_type,info$is_markov,info$segment)
   middle$with_edge <- calc_ic_with_edges(info$network,exp_data,info$ic_type,info$is_markov,info$segment,middle$wo_edge)
 
-  middle$information_gain <- middle$with_edge -middle$wo_edge
+  middle$information_gain <- middle$with_edge - middle$wo_edge
 
   gain_ave <- apply(middle$information_gain,2,ave)
   middle$gain_diff <- -(middle$information_gain - gain_ave)
 
   
-#  res_ic$middle <- middle
+  res_ic$middle <- middle
 
   #remove nodes without inedge and store 
   col_valid <- as.vector(!is.na(middle$information_gain[1,]))  
